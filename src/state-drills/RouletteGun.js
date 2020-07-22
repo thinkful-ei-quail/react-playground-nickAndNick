@@ -6,8 +6,10 @@ class RouletteGun extends Component {
         super(props);
         this.state = {
             chamber: null,
-            spinningTheChamber: false
+            spinningTheChamber: false,
+            clicked: false
         }
+        this.timeout = null
     }
 
     static defaultProps = {
@@ -16,24 +18,38 @@ class RouletteGun extends Component {
 
     handleTriggerClick = () => {
         this.setState({
-            spinningTheChamber: true
+            spinningTheChamber: true,
+            clicked: true
         })
-        let insideTimeout = 
+        this.timeout = setTimeout(() => {
             this.setState({
-                chamber: Math.ceil(Math.random() * 8)
-            })
-            this.setState({
+                chamber: Math.ceil(Math.random() * 8),
                 spinningTheChamber: false
             })
-        let timeout = setTimeout(insideTimeout, 2000)
-        return timeout;
+        }, 2000)
+    }
+    
+    componentWillUnmount() {
+        clearTimeout(this.timeout)
     }
 
+
     render() {
+        let consequences ='';
+        if(!this.state.clicked) {
+            consequences ='ready to meet your maker?'
+        }
+        else if(this.state.spinningTheChamber) {
+          consequences = 'spinning the chamber and pulling the trigger! ...'
+          } else if  (this.state.chamber === this.props.bulletInChamber
+          ) {
+              consequences = 'BANG!!!!'
+          } else consequences = "you're safe!" 
+          
         return (
             <div>
-                <p>{this.state.chamber}</p>
-                <button onClick={this.handleTriggerClick}>Pull the trigger!</button>
+                <p>{ consequences }</p>
+                <button onClick={this.handleTriggerClick} disabled={this.state.spinningTheChamber}>Pull the trigger!</button>
             </div>
         );
     };
