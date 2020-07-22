@@ -11,17 +11,24 @@ describe(`Accordion Component`, () => {
     ReactDOM.unmountComponentAtNode(div);
   })
 
-  it('renders the UI as expected', () => {
+  it('renders no sections active as default', () => {
     const tree = renderer
     .create(<Accordion sections={[{title:'Section 1', content:'Lorem ipsum dolor sit amet consectetur adipisicing elit.'}]}/>)
     .toJSON();
     expect(tree).toMatchSnapshot();  
   });
-  
+
   it('renders an empty li when sections prop is not supplied', () => {
     const tree = renderer
     .create(<Accordion />)
     .toJSON();
     expect(tree).toMatchSnapshot();
   });
+
+  it('opens a clicked section', () => {
+    const tree = renderer
+    .create(<Accordion sections={[{title:'Section 1', content:'Lorem ipsum dolor sit amet consectetur adipisicing elit.'}]}/>)
+    .toJSON();
+    expect(tree).toMatchSnapshot();
+  })
 })
