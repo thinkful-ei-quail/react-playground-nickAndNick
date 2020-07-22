@@ -7,7 +7,9 @@ class Accordion extends Component {
             isCurrentlySelected: -1
         }
     }
-
+static defaultProps = {
+    sections:[{title:'',content:''}]
+}
     renderButton = (section,index) => {
         if (this.state.isCurrentlySelected !== index) {
             return (
