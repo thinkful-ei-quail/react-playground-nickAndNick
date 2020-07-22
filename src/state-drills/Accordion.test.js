@@ -25,10 +25,10 @@ describe(`Accordion Component`, () => {
     expect(tree).toMatchSnapshot();
   });
 
-  it('opens a clicked section', () => {
-    const tree = renderer
-    .create(<Accordion sections={[{title:'Section 1', content:'Lorem ipsum dolor sit amet consectetur adipisicing elit.'}]}/>)
-    .toJSON();
-    expect(tree).toMatchSnapshot();
-  })
+  // it('opens a clicked section', () => {
+  //   const tree = renderer
+  //   .create(<Accordion sections={[{title:'Section 1', content:'Lorem ipsum dolor sit amet consectetur adipisicing elit.'}]}/>)
+  //   .toJSON();
+  //   expect(tree).toMatchSnapshot();
+  // })
 })
