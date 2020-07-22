@@ -17,6 +17,7 @@ describe(`Accordion Component`, () => {
     .toJSON();
     expect(tree).toMatchSnapshot();  
   });
+  
   it('renders an empty li when sections prop is not supplied', () => {
     const tree = renderer
     .create(<Accordion />)
