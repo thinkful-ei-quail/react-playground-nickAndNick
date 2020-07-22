@@ -4,51 +4,50 @@ class Accordion extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            isToggleOn: true
+            isCurrentlySelected: -1
         }
     }
 
-    renderButton() {
-        if (!this.state.isToggleOn) {
+    renderButton = (section,index) => {
+        if (this.state.isCurrentlySelected !== index) {
             return (
                 <li>
-                    <button onClick={this.expandSectionClick}>
-                        Dummy Title
-                        {this.props.sections.title}
+                    <button onClick={() => this.expandSectionClick(index)}>
+                      
+                        {section.title}
                     </button>
                 </li>
             )
         } else {
             return (
                 <li>
-                    <button onClick={this.expandSectionClick}>
-                        Dummy Title
-                        {this.props.sections.title}
-                        <p>Dummy Content</p>
-                        <p>{this.props.sections.content}</p>
+                    <button onClick={() => this.expandSectionClick(index)}>
+                        
+                        {section.title}
+                        
+                        <p>{section.content}</p>
                     </button>
                 </li>
             )
         } 
     }
 
-    expandSectionClick = () => {
+    expandSectionClick = (index) => {
+        if(this.state.isCurrentlySelected === index) {
+            index = -1
+        }
         this.setState({
-            isToggleOn: !this.state.isToggleOn
+            isCurrentlySelected: index
         })
+        
         // console.log(this.state.isToggleOn)
-        this.renderButton();
     }
 
     render() {
+        let sections = this.props.sections.map(this.renderButton)
         return (
             <ul>
-                <li>
-                    <button onClick={this.expandSectionClick} >
-                        Dummy Title
-                        {this.props.sections.title}
-                    </button>
-                </li>
+                {sections}
             </ul>
         )
     }
