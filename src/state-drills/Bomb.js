@@ -18,12 +18,17 @@ class Bomb extends Component {
     }
 
     componentWillUnmount() {
-        clearInterval(this.interval)
+           clearInterval(this.interval)
     }
 
     
     render() {
-        const bombBoom = this.state.count % 2 === 1 ? 'tick' : 'tock';
+        const bombBoom = this.state.count  >= 8 ? 'BOOM!!!!'
+        : this.state.count % 2 === 1 ? "tock"
+        :'tick'
+            if(this.state.count >= 8) {
+                clearInterval(this.interval)
+            }
         return (
             <div>
                 <p>{bombBoom}</p>
