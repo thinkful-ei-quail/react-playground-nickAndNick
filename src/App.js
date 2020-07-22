@@ -20,7 +20,7 @@ const sections = [
 function App() {
   return (
     <main className='App'>
-      <Accordion sections={sections}/>
+      <Accordion sections={sections} />
     </main>
   );
 }
