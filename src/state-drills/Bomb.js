@@ -23,12 +23,16 @@ class Bomb extends Component {
 
     
     render() {
-        const bombBoom = this.state.count  >= 8 ? 'BOOM!!!!'
-        : this.state.count % 2 === 1 ? "tock"
-        :'tick'
-            if(this.state.count >= 8) {
-                clearInterval(this.interval)
-            }
+        let bombBoom = '';
+        if (this.state.count >= 8) {
+            clearInterval(this.interval)
+            bombBoom = 'BOOM!!!!'
+        } else if (this.state.count % 2 === 0) {
+            bombBoom = 'tick'
+        } else if (this.state.count % 2 === 1) {
+            bombBoom = 'tock'
+        }
+            
         return (
             <div>
                 <p>{bombBoom}</p>
