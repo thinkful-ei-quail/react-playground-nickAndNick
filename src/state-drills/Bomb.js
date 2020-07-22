@@ -23,7 +23,7 @@ class Bomb extends Component {
 
     
     render() {
-        const bombBoom = this.count;
+        const bombBoom = this.state.count % 2 === 1 ? 'tick' : 'tock';
         return (
             <div>
                 <p>{bombBoom}</p>
